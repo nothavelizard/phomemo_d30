@@ -9,12 +9,12 @@ import os
 
 @click.command()
 @click.argument('text')
-@click.option('--font', default="Helvetica", help='Path to TTF font file')
+@click.option('--font', default="C:\\Windows\\Fonts\\impact.ttf", help='Path to TTF font file')
 @click.option('--fruit', is_flag=True, show_default=True, default=False,
               help='Enable offsets to print on a fruit label')
-def main(text, font, fruit):
-    port = serial.Serial("/dev/rfcomm1", timeout=10)
 
+def main(text, font, fruit):
+    port = serial.Serial("COM4", timeout=10)
     filename = generate_image(text, font, fruit, "temp.png")
     header(port)
     print_image(port, filename)
